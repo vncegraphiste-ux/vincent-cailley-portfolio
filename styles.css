@@ -45,14 +45,20 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset
 .down-indicator{position:absolute;bottom:9%;left:50%;transform:translateX(-50%);font-size:24px;font-weight:300;line-height:1;animation:nudge 2.2s ease-in-out infinite}
 @keyframes nudge{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,6px)}}
 .portfolio{padding:0 5.5% 120px;scroll-margin-top:50px}
-.project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:62px 26px}
+.project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:62px 26px;grid-auto-flow:dense}
 .project-card{min-width:0}
-.project-image{aspect-ratio:4/3;background:var(--white);overflow:hidden}
+.project-image{aspect-ratio:4/3;background:var(--white);overflow:hidden;border-radius:24px}
 .project-image img{width:100%;height:100%;display:block;object-fit:cover}
 .project-info{display:grid;grid-template-columns:1fr auto;align-items:baseline;column-gap:10px;row-gap:2px;margin-top:15px}
 .project-info h2{margin:0;font-family:var(--font-title);font-size:clamp(14px,1.25vw,19px);font-weight:600;letter-spacing:-.035em}
 .project-info p{grid-column:1;margin:0;color:var(--muted);font-size:13px;font-weight:300}
 .project-info time{grid-column:2;grid-row:1;align-self:baseline;font-size:13px;font-weight:300;color:var(--muted)}
+.project-card--featured{grid-column:1/-1;padding:28px;border-radius:32px;background:linear-gradient(180deg,color-mix(in srgb, var(--project-accent, #eef2f5) 58%, white) 0%, #fff 100%);box-shadow:0 12px 30px rgba(25,30,38,.06)}
+.project-featured-header{margin-bottom:22px}
+.project-card--featured .project-info{margin-top:0}
+.project-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:start}
+.screen-frame{margin:0;padding:18px;border-radius:28px;background:color-mix(in srgb, var(--project-accent, #eaf2ff) 88%, white);box-shadow:inset 0 0 0 1px rgba(20,27,38,.05)}
+.screen-frame img{display:block;width:100%;height:auto;border-radius:26px;background:#fff;box-shadow:0 10px 26px rgba(34,42,55,.12)}
 /* About */
 .about-hero{position:relative;min-height:53svh;display:flex;align-items:center;justify-content:center;padding:160px 25px 80px;text-align:center}
 .about-hero-inner{width:100%;max-width:810px;margin:auto}
@@ -92,6 +98,10 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset
   .down-indicator{bottom:8%}
   .portfolio{padding:0 5% 80px}
   .project-grid{grid-template-columns:1fr;gap:42px}
+  .project-card--featured{padding:18px;border-radius:24px}
+  .project-gallery{grid-template-columns:1fr;gap:14px}
+  .screen-frame{padding:12px;border-radius:20px}
+  .screen-frame img{border-radius:18px}
   .project-info h2{font-size:17px}
   .about-hero{min-height:46svh;padding:151px 8% 70px}
   .about-intro{font-size:15px;margin-top:0;line-height:1.65}

@@ -1,24 +1,21 @@
-# Portfolio de Vincent Cailley — prêt pour GitHub / Netlify
+# Portfolio Vincent Cailley — V10
 
-Site HTML/CSS/JavaScript statique, sans compilation ni installation.
+Portfolio statique HTML/CSS/JS pour GitHub et Netlify.
 
-## Publication
-1. Décompressez cette archive.
-2. Créez un dépôt GitHub `vincent-cailley-portfolio`.
-3. Importez les fichiers (y compris `assets/`) directement à la racine du dépôt : `index.html` doit être visible au premier niveau.
-4. Netlify : Add new project > Import an existing project > GitHub > sélectionnez le nouveau dépôt.
-5. Branche : `main` ; Build command : vide ; Publish directory : `.` (racine).
-6. Publiez. Les modifications de la branche `main` déclenchent ensuite des déploiements automatiques.
+## Liens distincts (après le nouveau déploiement Netlify)
 
-## Pages
-- `index.html` : galerie UI/UX games & apps
-- `about.html` : page à propos EN/FR
+- Jeux vidéo : https://vincentcailley.netlify.app/games/#projects
+- Applications et sites : https://vincentcailley.netlify.app/apps/#projects
 
-## Mettre à jour
-- `projects.js` : nom, année, catégorie et image des projets
-- `assets/` : les visuels des projets en WebP
-- `styles.css` : mise en page
-- `translations.js` : traductions EN/FR
-- `script.js` : interactions et navigation
+Les deux adresses pointent vers le même site, mais montrent des galeries différentes. La page `about.html` et le sélecteur EN / FR restent partagés.
 
-**Note :** les libellés et années des six projets App & Web suivent les noms des fichiers transmis : Starbucks (2024), Surpass App (2020), Baleen (2019), Le Mag Cdiscount (2021), Laba Travel Tracker (2026), Love Fest (2019).
+## Mettre à jour le site déjà en ligne
+
+1. Sur GitHub, ouvrir le dépôt `vncegraphiste-ux/vincent-cailley-portfolio`.
+2. Utiliser **Add file > Upload files** pour charger les fichiers de ce ZIP **décompressé**, y compris le fichier `_redirects` et le dossier `assets`.
+3. Confirmer le commit sur la branche `main`.
+4. Netlify, déjà connecté au dépôt, publiera automatiquement les changements.
+
+Ne créez pas un deuxième dépôt ni un deuxième site Netlify. Les anciennes URLs `/?category=game` et `/?category=apps` restent compatibles.
+
+Le fichier `_redirects` contient les réécritures Netlify nécessaires aux deux routes. Les chemins d'images CSS/JS sont définis depuis la racine du site pour fonctionner dans les deux routes.

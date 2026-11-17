@@ -1,9 +1,45 @@
 /* Portfolio projects — edit name, year and image path here. All cards are display-only. */
 window.PORTFOLIO_PROJECTS = [
-  {name:'Draw Something Together', category:'game', year:'2026', image:'assets/draw-something-together.webp'},
+  {
+    name:'Draw Something Together',
+    category:'game',
+    year:'2026',
+    image:'assets/draw-something-together.webp',
+    featured:true,
+    accent:'#d8ecff',
+    screens:[
+      {src:'assets/dst-home.png', label:'Home'},
+      {src:'assets/dst-draw.png', label:'Drawing'},
+      {src:'assets/dst-score.png', label:'Score'}
+    ]
+  },
   {name:'Lost Parcel Tycoon', category:'game', year:'2026', image:'assets/lost-parcel-tycoon.webp'},
-  {name:'Taxi Idle Game', category:'game', year:'2025', image:'assets/taxi-idle-game.webp'},
-  {name:'Pirates Raids Conquest', category:'game', year:'2024', image:'assets/pirates-raids-conquest.webp'},
+  {
+    name:'Taxi Idle Game',
+    category:'game',
+    year:'2025',
+    image:'assets/taxi-idle-game.webp',
+    featured:true,
+    accent:'#fff1a8',
+    screens:[
+      {src:'assets/taxi-01.png', label:'Start'},
+      {src:'assets/taxi-02.png', label:'Progression'},
+      {src:'assets/taxi-03.png', label:'Advanced'}
+    ]
+  },
+  {
+    name:'Pirates Raids Conquest',
+    category:'game',
+    year:'2024',
+    image:'assets/pirates-raids-conquest.webp',
+    featured:true,
+    accent:'#d9f6ff',
+    screens:[
+      {src:'assets/prc-home.png', label:'Menu'},
+      {src:'assets/prc-battle.png', label:'Battle'},
+      {src:'assets/prc-card.png', label:'Card'}
+    ]
+  },
   {name:'Toy Blast 3D', category:'game', year:'2023', image:'assets/toy-blast-3d.webp'},
   {name:'Dragons: Rise of Berk', category:'game', year:'2023', image:'assets/dragons-rise-of-berk.webp'},
   {name:'Jurassic World Alive', category:'game', year:'2023', image:'assets/jurassic-world-alive.webp'},
