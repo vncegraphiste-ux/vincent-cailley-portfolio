@@ -71,6 +71,29 @@
     return info;
   }
 
+  function buildScreenFrame(project, screen, index, eager, extraClass = '') {
+    const frame = document.createElement('figure');
+    frame.className = 'screen-frame' + (extraClass ? ' ' + extraClass : '');
+    if (screen.type === 'logo') frame.classList.add('screen-frame--logo');
+    const img = document.createElement('img');
+    img.src = '/' + screen.src.replace(/^\/+/, '');
+    img.alt = `${project.name} — ${screen.label || `screen ${index + 1}`}`;
+    img.loading = eager && index === 0 ? 'eager' : 'lazy';
+    img.decoding = 'async';
+    if (screen.type === 'logo') {
+      img.width = 1000;
+      img.height = 810;
+    } else if (project.layout === 'landscape' || project.layout === 'landscape-logo') {
+      img.width = 2048;
+      img.height = 945;
+    } else {
+      img.width = 921;
+      img.height = 1993;
+    }
+    frame.appendChild(img);
+    return frame;
+  }
+
   function buildFeaturedCard(project, t, eager) {
     const card = document.createElement('article');
     card.className = 'project-card project-card--featured';
@@ -84,34 +107,55 @@
     const visualPanel = document.createElement('div');
     visualPanel.className = 'project-visual-panel';
 
+    const screens = Array.isArray(project.screens) ? project.screens : [];
     const gallery = document.createElement('div');
     gallery.className = 'project-gallery';
     if (project.layout) gallery.classList.add('project-gallery--' + project.layout);
+    screens.forEach((screen, index) => gallery.appendChild(buildScreenFrame(project, screen, index, eager)));
 
-    (project.screens || []).forEach((screen, index) => {
-      const frame = document.createElement('figure');
-      frame.className = 'screen-frame';
-      if (screen.type === 'logo') frame.classList.add('screen-frame--logo');
-      const img = document.createElement('img');
-      img.src = '/' + screen.src.replace(/^\/+/, '');
-      img.alt = `${project.name} — ${screen.label || `screen ${index + 1}`}`;
-      img.loading = eager && index === 0 ? 'eager' : 'lazy';
-      img.decoding = 'async';
-      if (screen.type === 'logo') {
-        img.width = 1000;
-        img.height = 810;
-      } else if (project.layout === 'landscape' || project.layout === 'landscape-logo') {
-        img.width = 2048;
-        img.height = 945;
+    const logoIndex = screens.findIndex(screen => screen.type === 'logo');
+    const hasThreeVisuals = screens.length === 3;
+    const hasLandscapeLogo = project.layout === 'landscape-logo' && screens.length >= 2;
+    const useMobileComposed = hasThreeVisuals || hasLandscapeLogo;
+
+    if (useMobileComposed) {
+      card.classList.add('project-card--mobile-composed');
+      if (hasLandscapeLogo) card.classList.add('project-card--mobile-landscape-logo');
+
+      const mobileIntro = document.createElement('div');
+      mobileIntro.className = 'project-mobile-intro' + (hasLandscapeLogo ? ' project-mobile-intro--logo-left' : '');
+
+      const mobileInfo = buildProjectInfo(project, t);
+      mobileInfo.classList.add('project-info--mobile');
+
+      let featureIndex;
+      if (hasLandscapeLogo) {
+        featureIndex = logoIndex >= 0 ? logoIndex : 0;
       } else {
-        img.width = 921;
-        img.height = 1993;
+        featureIndex = logoIndex >= 0 ? logoIndex : screens.length - 1;
       }
-      frame.appendChild(img);
-      gallery.appendChild(frame);
-    });
 
-    visualPanel.appendChild(gallery);
+      const featureFrame = buildScreenFrame(project, screens[featureIndex], featureIndex, eager, 'screen-frame--mobile-feature');
+
+      if (hasLandscapeLogo) {
+        mobileIntro.append(featureFrame, mobileInfo);
+      } else {
+        mobileIntro.append(mobileInfo, featureFrame);
+      }
+
+      const mobileGallery = document.createElement('div');
+      const remainingScreens = screens.filter((_, index) => index !== featureIndex);
+      mobileGallery.className = 'project-mobile-gallery' + (remainingScreens.length === 1 ? ' project-mobile-gallery--single' : '');
+      remainingScreens.forEach((screen, index) => {
+        const originalIndex = screens.indexOf(screen);
+        mobileGallery.appendChild(buildScreenFrame(project, screen, originalIndex, eager));
+      });
+
+      visualPanel.append(mobileIntro, mobileGallery, gallery);
+    } else {
+      visualPanel.appendChild(gallery);
+    }
+
     card.append(visualPanel, header);
     return card;
   }

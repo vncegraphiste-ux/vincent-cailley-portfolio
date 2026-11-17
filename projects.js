@@ -14,7 +14,20 @@ window.PORTFOLIO_PROJECTS = [
       {src:'assets/dst-score.png', label:'Score'}
     ]
   },
-  {name:'Lost Parcel Tycoon', category:'game', year:'2026', image:'assets/lost-parcel-tycoon.webp'},
+  {
+    name:'Lost Parcel Tycoon',
+    category:'game',
+    year:'2026',
+    image:'assets/lost-parcel-tycoon.webp',
+    featured:true,
+    gradientFrom:'#F0E4DF',
+    gradientTo:'#E8E0DB',
+    screens:[
+      {src:'assets/lpt-1.webp', label:'Home screen'},
+      {src:'assets/lpt-2.webp', label:'Inventory'},
+      {src:'assets/lpt-3.webp', label:'Upgrades'}
+    ]
+  },
   {
     name:'Taxi Idle Game',
     category:'game',
@@ -69,7 +82,20 @@ window.PORTFOLIO_PROJECTS = [
       {src:'assets/jwa-2.webp',label:'Badges and profile'}
     ]
   },
-  {name:'Pixel Quiz', category:'game', year:'2023', image:'assets/pixel-quiz.webp'},
+  {
+    name:'Pixel Quiz',
+    category:'game',
+    year:'2023',
+    image:'assets/pixel-quiz.webp',
+    featured:true,
+    gradientFrom:'#E8F0FF',
+    gradientTo:'#FAECEB',
+    screens:[
+      {src:'assets/pixel-1.webp', label:'Level list'},
+      {src:'assets/pixel-2.webp', label:'Quiz screen'},
+      {src:'assets/pixel-3.webp', label:'Unlock popup'}
+    ]
+  },
   {
     name:'Bingo', category:'game', year:'2022', image:'assets/bingo.webp',
     featured:true, layout:'landscape', gradientFrom:'#EDF6E4', gradientTo:'#FFFAE9',
