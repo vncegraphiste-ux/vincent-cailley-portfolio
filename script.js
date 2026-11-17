@@ -74,7 +74,8 @@
   function buildFeaturedCard(project, t, eager) {
     const card = document.createElement('article');
     card.className = 'project-card project-card--featured';
-    if (project.accent) card.style.setProperty('--project-accent', project.accent);
+    if (project.gradientFrom) card.style.setProperty('--project-gradient-from', project.gradientFrom);
+    if (project.gradientTo) card.style.setProperty('--project-gradient-to', project.gradientTo);
 
     const header = document.createElement('div');
     header.className = 'project-featured-header';
@@ -85,17 +86,27 @@
 
     const gallery = document.createElement('div');
     gallery.className = 'project-gallery';
+    if (project.layout) gallery.classList.add('project-gallery--' + project.layout);
 
     (project.screens || []).forEach((screen, index) => {
       const frame = document.createElement('figure');
       frame.className = 'screen-frame';
+      if (screen.type === 'logo') frame.classList.add('screen-frame--logo');
       const img = document.createElement('img');
       img.src = '/' + screen.src.replace(/^\/+/, '');
       img.alt = `${project.name} — ${screen.label || `screen ${index + 1}`}`;
       img.loading = eager && index === 0 ? 'eager' : 'lazy';
       img.decoding = 'async';
-      img.width = 921;
-      img.height = 1993;
+      if (screen.type === 'logo') {
+        img.width = 1000;
+        img.height = 810;
+      } else if (project.layout === 'landscape' || project.layout === 'landscape-logo') {
+        img.width = 2048;
+        img.height = 945;
+      } else {
+        img.width = 921;
+        img.height = 1993;
+      }
       frame.appendChild(img);
       gallery.appendChild(frame);
     });

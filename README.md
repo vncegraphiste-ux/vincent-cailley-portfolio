@@ -22,3 +22,11 @@ Le fichier `_redirects` contient les réécritures Netlify nécessaires aux deux
 
 
 V14: Projets grand format — captures à gauche et informations à droite sur PC (≥1081px) ; informations au-dessus des captures sur tablette et mobile. Un seul fond coloré, sans sous-cadres autour des captures.
+
+
+### V16 — Panneaux pastel
+
+Les trois projets vedettes (Draw Something Together, Taxi Idle Game et Pirates Raids Conquest) utilisent maintenant un fond degrade tres pastel et des angles droits. Les captures restent sans cadre individuel, et les informations restent a droite sur grand ecran et au-dessus sur mobile. Les couleurs sont modifiables dans `projects.js` via `gradientFrom` et `gradientTo`.
+
+
+V17: 7 more Game UI/UX projects now use wide pastel sections. Original screen assets stored in assets/ as WebP. Project layout settings are in projects.js.
