@@ -99,6 +99,7 @@
     card.className = 'project-card project-card--featured';
     if (project.gradientFrom) card.style.setProperty('--project-gradient-from', project.gradientFrom);
     if (project.gradientTo) card.style.setProperty('--project-gradient-to', project.gradientTo);
+    if (project.equalHeight) card.classList.add('project-card--equal-height');
 
     const header = document.createElement('div');
     header.className = 'project-featured-header';
@@ -116,42 +117,45 @@
     const logoIndex = screens.findIndex(screen => screen.type === 'logo');
     const hasThreeVisuals = screens.length === 3;
     const hasLandscapeLogo = project.layout === 'landscape-logo' && screens.length >= 2;
-    const useMobileComposed = hasThreeVisuals || hasLandscapeLogo;
+    const hasSingleLandscape = project.layout === 'landscape' && screens.length === 1;
+    const useMobileComposed = hasThreeVisuals || hasLandscapeLogo || hasSingleLandscape;
 
     if (useMobileComposed) {
       card.classList.add('project-card--mobile-composed');
       if (hasLandscapeLogo) card.classList.add('project-card--mobile-landscape-logo');
+      if (hasSingleLandscape) card.classList.add('project-card--mobile-panel-title');
 
       const mobileIntro = document.createElement('div');
-      mobileIntro.className = 'project-mobile-intro' + (hasLandscapeLogo ? ' project-mobile-intro--logo-left' : '');
-
       const mobileInfo = buildProjectInfo(project, t);
       mobileInfo.classList.add('project-info--mobile');
 
-      let featureIndex;
-      if (hasLandscapeLogo) {
-        featureIndex = logoIndex >= 0 ? logoIndex : 0;
+      if (hasSingleLandscape) {
+        mobileIntro.className = 'project-mobile-intro project-mobile-intro--title-only';
+        mobileIntro.append(mobileInfo);
+        visualPanel.append(mobileIntro, gallery);
       } else {
-        featureIndex = logoIndex >= 0 ? logoIndex : screens.length - 1;
-      }
+        mobileIntro.className = 'project-mobile-intro' + (hasLandscapeLogo ? ' project-mobile-intro--logo-left' : '');
 
-      const featureFrame = buildScreenFrame(project, screens[featureIndex], featureIndex, eager, 'screen-frame--mobile-feature');
+        let featureIndex;
+        if (hasLandscapeLogo) {
+          featureIndex = logoIndex >= 0 ? logoIndex : 0;
+        } else {
+          featureIndex = logoIndex >= 0 ? logoIndex : 0;
+        }
 
-      if (hasLandscapeLogo) {
+        const featureFrame = buildScreenFrame(project, screens[featureIndex], featureIndex, eager, 'screen-frame--mobile-feature');
         mobileIntro.append(featureFrame, mobileInfo);
-      } else {
-        mobileIntro.append(mobileInfo, featureFrame);
+
+        const mobileGallery = document.createElement('div');
+        const remainingScreens = screens.filter((_, index) => index !== featureIndex);
+        mobileGallery.className = 'project-mobile-gallery' + (remainingScreens.length === 1 ? ' project-mobile-gallery--single' : '');
+        remainingScreens.forEach((screen, index) => {
+          const originalIndex = screens.indexOf(screen);
+          mobileGallery.appendChild(buildScreenFrame(project, screen, originalIndex, eager));
+        });
+
+        visualPanel.append(mobileIntro, mobileGallery, gallery);
       }
-
-      const mobileGallery = document.createElement('div');
-      const remainingScreens = screens.filter((_, index) => index !== featureIndex);
-      mobileGallery.className = 'project-mobile-gallery' + (remainingScreens.length === 1 ? ' project-mobile-gallery--single' : '');
-      remainingScreens.forEach((screen, index) => {
-        const originalIndex = screens.indexOf(screen);
-        mobileGallery.appendChild(buildScreenFrame(project, screen, originalIndex, eager));
-      });
-
-      visualPanel.append(mobileIntro, mobileGallery, gallery);
     } else {
       visualPanel.appendChild(gallery);
     }

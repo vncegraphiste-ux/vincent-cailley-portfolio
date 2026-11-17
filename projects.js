@@ -58,7 +58,7 @@ window.PORTFOLIO_PROJECTS = [
   },
   {
     name:'Toy Blast 3D', category:'game', year:'2023', image:'assets/toy-blast-3d.webp',
-    featured:true, gradientFrom:'#E2F2FF', gradientTo:'#FFF1EA',
+    featured:true, equalHeight:true, gradientFrom:'#E2F2FF', gradientTo:'#FFF1EA',
     screens:[
       {src:'assets/toy-blast-1.webp',label:'Game screen'},
       {src:'assets/toy-blast-2.webp',label:'Loading screen'},
