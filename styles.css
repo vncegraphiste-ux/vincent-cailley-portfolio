@@ -107,12 +107,12 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
   gap:clamp(8px,1.1vw,20px);
-  align-items:start;
+  align-items:center;
   min-width:0;
 }
 .project-mobile-intro,
 .project-mobile-gallery{display:none}
-.screen-frame{margin:0;padding:0;min-width:0;align-self:start;background:transparent;border:0;border-radius:0;box-shadow:none}
+.screen-frame{margin:0;padding:0;min-width:0;align-self:center;background:transparent;border:0;border-radius:0;box-shadow:none}
 .screen-frame img{display:block;width:100%;height:auto;border:0;border-radius:0;background:transparent;box-shadow:none;vertical-align:top}
 .project-mobile-intro .project-info{margin:0}
 .project-mobile-intro .project-info h2{font-size:clamp(23px,6vw,31px);line-height:1.12}
@@ -199,12 +199,12 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset
   .project-card--mobile-composed .project-mobile-intro{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:center;margin-bottom:14px}
   .project-card--mobile-composed .project-mobile-intro--logo-left{grid-template-columns:minmax(112px,38%) minmax(0,1fr)}
   .project-card--mobile-composed .project-mobile-intro--title-only{grid-template-columns:1fr;gap:0;margin-bottom:14px}
-  .project-card--mobile-composed .project-mobile-intro .project-info{align-self:center;margin:0}
-  .project-card--mobile-composed .screen-frame--mobile-feature{display:flex;justify-content:flex-start;align-items:flex-start}
+  .project-card--mobile-composed .project-mobile-intro .project-info{align-self:center;display:flex;flex-direction:column;justify-content:center;margin:0;height:100%}
+  .project-card--mobile-composed .screen-frame--mobile-feature{display:flex;justify-content:center;align-items:center;height:100%}
   .project-card--mobile-composed .screen-frame--mobile-feature img{width:100%;height:auto}
   .project-card--mobile-composed .screen-frame--mobile-feature.screen-frame--logo{align-items:center}
   .project-card--mobile-composed .screen-frame--mobile-feature.screen-frame--logo img{width:min(100%,240px);object-fit:contain}
-  .project-card--mobile-composed .project-mobile-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+  .project-card--mobile-composed .project-mobile-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:center}
   .project-card--mobile-composed .project-mobile-gallery--single{grid-template-columns:1fr}
   .project-card--mobile-panel-title .project-mobile-intro .project-info{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
   .project-card--mobile-panel-title .project-mobile-intro .project-info h2{font-size:clamp(23px,6vw,31px);line-height:1.12}
