@@ -19,3 +19,6 @@ Les deux adresses pointent vers le même site, mais montrent des galeries diffé
 Ne créez pas un deuxième dépôt ni un deuxième site Netlify. Les anciennes URLs `/?category=game` et `/?category=apps` restent compatibles.
 
 Le fichier `_redirects` contient les réécritures Netlify nécessaires aux deux routes. Les chemins d'images CSS/JS sont définis depuis la racine du site pour fonctionner dans les deux routes.
+
+
+V14: Projets grand format — captures à gauche et informations à droite sur PC (≥1081px) ; informations au-dessus des captures sur tablette et mobile. Un seul fond coloré, sans sous-cadres autour des captures.

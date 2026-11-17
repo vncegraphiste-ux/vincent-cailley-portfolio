@@ -80,6 +80,9 @@
     header.className = 'project-featured-header';
     header.append(buildProjectInfo(project, t));
 
+    const visualPanel = document.createElement('div');
+    visualPanel.className = 'project-visual-panel';
+
     const gallery = document.createElement('div');
     gallery.className = 'project-gallery';
 
@@ -97,7 +100,8 @@
       gallery.appendChild(frame);
     });
 
-    card.append(header, gallery);
+    visualPanel.appendChild(gallery);
+    card.append(visualPanel, header);
     return card;
   }
 
